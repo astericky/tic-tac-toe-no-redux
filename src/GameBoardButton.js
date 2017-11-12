@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Button from 'antd/lib/button';
 
-class ResetButton extends Component {
-    constructor() {
+class GameBoardButton extends Component {
+    constructor(props) {
         super(props);
     }
     
@@ -14,3 +14,5 @@ class ResetButton extends Component {
         );
     }
 }
+
+export default GameBoardButton;
