@@ -29,7 +29,7 @@ class App extends Component {
     });
   }
 
-  handleBoardButtonClicked() {
+  handleBoardButtonClicked(buttonLabel, xPos, yPos) {
     console.log('App :: handleBoardButtonClicked');
   }
 
