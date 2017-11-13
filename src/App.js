@@ -46,7 +46,11 @@ class App extends Component {
     let resetButtonLabel = isWinner ? `${lastPlay} WINS!` : 'reset...';
     return (
       <div className="App">
-        <ResetButton onClick={this.handleResetButtonClicked} text={resetButtonLabel} />
+        <ResetButton 
+          onClick={this.handleResetButtonClicked}
+          type="primary" 
+          text={resetButtonLabel} 
+        />
         <GameBoard 
           handleBoardButtonClicked={this.handleBoardButtonClicked} 
           board={board}
