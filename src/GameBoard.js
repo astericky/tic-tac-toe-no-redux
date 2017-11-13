@@ -17,7 +17,6 @@ const GameBoard = (props) => {
                 />
         )));
     return (
-        
         <div className="game-board">
             {buttons}
         </div>

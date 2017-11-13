@@ -1,46 +1,55 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import './checkTicTacToe';
+
 import ResetButton from './ResetButton';
 import GameBoard from './GameBoard';
+import checkTicTacToe from './checkTicTacToe';
+
+import logo from './logo.svg';
+import './App.css';
+
+const BOARD = [
+  ['', '', ''],
+  ['', '', ''],
+  ['', '', ''],
+];
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      board: [
-        ['', '', ''],
-        ['', '', ''],
-        ['', '', ''],
-      ],
+    this.state = { 
+      board: BOARD,
+      lastPlay: 'O',
+      isWinner: false,
     };
-    this.handleResetButtonClicked.bind(this);
-    this.handleBoardButtonClicked.bind(this);
   }
 
-  handleResetButtonClicked() {
-    this.setState({
-      board: [
-        ['', '', ''],
-        ['', '', ''],
-        ['', '', ''],
-      ]
+  handleResetButtonClicked = () => {
+    this.setState({ 
+      board: BOARD,
+      lastPlay: 'O',
+      isWinner: false,
     });
   }
 
-  handleBoardButtonClicked(buttonLabel, xPos, yPos) {
-    console.log('App :: handleBoardButtonClicked');
+  handleBoardButtonClicked = (xPos, yPos) => {
+    let { board, lastPlay } = this.state;
+    board[yPos][xPos] = lastPlay === 'O' ? 'X' : 'O';
+    this.setState({ 
+      board,
+      lastPlay: board[yPos][xPos],
+      isWinner: checkTicTacToe(board),
+    });
   }
 
   render() {
-    let text = "reset"
+    const { board, lastPlay, isWinner } = this.state;
+    let resetButtonLabel = isWinner ? `${lastPlay} WINS!` : 'reset...';
     return (
       <div className="App">
-        <ResetButton onClick={this.handleResetButtonClicked} text={text} />
+        <ResetButton onClick={this.handleResetButtonClicked} text={resetButtonLabel} />
         <GameBoard 
-          onBoardButtonClicked={this.handleBoardButtonClicked} 
-          board={this.state.board} 
+          handleBoardButtonClicked={this.handleBoardButtonClicked} 
+          board={board}
         />
       </div>
     );
