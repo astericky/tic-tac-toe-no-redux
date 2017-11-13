@@ -32,6 +32,7 @@ class App extends Component {
   }
 
   handleBoardButtonClicked = (xPos, yPos) => {
+    console.log('handleBoardButtonClicked')
     let { board, lastPlay } = this.state;
     board[yPos][xPos] = lastPlay === 'O' ? 'X' : 'O';
     this.setState({ 
