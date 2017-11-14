@@ -7,7 +7,7 @@ const GameBoardButton = ({ type, label, xPos, yPos, isWinner, handleButtonClicke
         <Button
             type={ type || 'primary' }
             className="game-board-button"
-            disabled={ isWinner }
+            disabled={ label || isWinner }
             onClick={ handleClick }
         >
             { label || '\0' }
