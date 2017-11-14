@@ -4,7 +4,6 @@ import Button from 'antd/lib/button';
 import GameBoard from './GameBoard';
 import checkTicTacToe from './checkTicTacToe';
 
-// import logo from './logo.svg';
 import './App.css';
 
 
