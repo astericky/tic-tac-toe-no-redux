@@ -1,5 +1,4 @@
 import React from 'react';
-import Button from 'antd/lib/button';
 import GameBoardButton from './GameBoardButton';
 import './GameBoard.css';
 
