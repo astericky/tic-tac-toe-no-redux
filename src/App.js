@@ -56,7 +56,7 @@ class App extends Component {
         <GameBoard 
           handleBoardButtonClicked={ this.handleBoardButtonClicked } 
           board={ board }
-          hasWinner={ isWinner }
+          isWinner={ isWinner }
         />
       </div>
     );

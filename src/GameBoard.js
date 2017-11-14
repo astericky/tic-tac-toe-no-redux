@@ -2,7 +2,7 @@ import React from 'react';
 import GameBoardButton from './GameBoardButton';
 import './GameBoard.css';
 
-const GameBoard = ({board, hasWinner, handleBoardButtonClicked}) => {
+const GameBoard = ({board, isWinner, handleBoardButtonClicked}) => {
     let key = 0;
     let buttons = board.map(
         (row, rowIndex) => (
@@ -13,10 +13,10 @@ const GameBoard = ({board, hasWinner, handleBoardButtonClicked}) => {
                     yPos={rowIndex}
                     label={item}
                     type={item ? 'default' : 'primary'}
-                    hasWinner={hasWinner}
+                    isWinner={isWinner}
                     handleButtonClicked={handleBoardButtonClicked} 
                 />
-        )));
+    )));
     return (
         <div className="game-board">
             {buttons}
