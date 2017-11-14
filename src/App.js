@@ -29,7 +29,8 @@ class App extends Component {
   }
 
   handleBoardButtonClicked = (xPos, yPos) => {
-    let { board, lastPlay } = this.state;
+    let { lastPlay } = this.state;
+    let board = this.state.board.map(row => row.map(column => column));
 
     board[yPos][xPos] = lastPlay === 'O' ? 'X' : 'O';
 
