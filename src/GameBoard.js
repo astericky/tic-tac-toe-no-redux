@@ -1,10 +1,11 @@
 import React from 'react';
+import Button from 'antd/lib/button';
 import GameBoardButton from './GameBoardButton';
 import './GameBoard.css';
 
-const GameBoard = (props) => {
+const GameBoard = ({board, hasWinner, handleBoardButtonClicked}) => {
     let key = 0;
-    let buttons = props.board.map(
+    let buttons = board.map(
         (row, rowIndex) => (
             row.map(
                 (item, itemIndex) => <GameBoardButton 
@@ -13,7 +14,8 @@ const GameBoard = (props) => {
                     yPos={rowIndex}
                     label={item}
                     type={item ? 'default' : 'primary'}
-                    handleButtonClicked={props.handleBoardButtonClicked} 
+                    hasWinner={hasWinner}
+                    handleButtonClicked={handleBoardButtonClicked} 
                 />
         )));
     return (

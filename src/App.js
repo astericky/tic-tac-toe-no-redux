@@ -1,40 +1,39 @@
 import React, { Component } from 'react';
+import Button from 'antd/lib/button';
 
-import ResetButton from './ResetButton';
 import GameBoard from './GameBoard';
 import checkTicTacToe from './checkTicTacToe';
 
 import logo from './logo.svg';
 import './App.css';
 
-const BOARD = [
-  ['', '', ''],
-  ['', '', ''],
-  ['', '', ''],
-];
+
+const initialState = () => ({
+  board: [
+    ['', '', ''],
+    ['', '', ''],
+    ['', '', ''],
+  ],
+  lastPlay: 'O',
+  isWinner: false,
+})
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
-      board: BOARD,
-      lastPlay: 'O',
-      isWinner: false,
-    };
+
+    this.state = { ...initialState() };
   }
 
   handleResetButtonClicked = () => {
-    this.setState({ 
-      board: BOARD,
-      lastPlay: 'O',
-      isWinner: false,
-    });
+    this.setState({ ...initialState() });
   }
 
   handleBoardButtonClicked = (xPos, yPos) => {
-    console.log('handleBoardButtonClicked')
     let { board, lastPlay } = this.state;
+
     board[yPos][xPos] = lastPlay === 'O' ? 'X' : 'O';
+
     this.setState({ 
       board,
       lastPlay: board[yPos][xPos],
@@ -44,17 +43,20 @@ class App extends Component {
 
   render() {
     const { board, lastPlay, isWinner } = this.state;
-    let resetButtonLabel = isWinner ? `${lastPlay} WINS!` : 'reset...';
+    const resetButtonLabel = isWinner ? `${lastPlay} WINS!` : 'reset...';
+
     return (
       <div className="App">
-        <ResetButton 
-          onClick={this.handleResetButtonClicked}
-          type="primary" 
-          text={resetButtonLabel} 
-        />
+        <Button 
+          type="primary"
+          onClick={ this.handleResetButtonClicked }
+        >
+          { resetButtonLabel }
+        </Button>
         <GameBoard 
-          handleBoardButtonClicked={this.handleBoardButtonClicked} 
-          board={board}
+          handleBoardButtonClicked={ this.handleBoardButtonClicked } 
+          board={ board }
+          hasWinner={ isWinner }
         />
       </div>
     );
